@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Application received</title>
+  <style>
+    body{font-family:Arial,Helvetica,sans-serif;background:#f4f6f8;padding:24px;color:#0b1724}
+    .card{max-width:720px;margin:18px auto;background:#fff;padding:20px;border-radius:8px;box-shadow:0 6px 18px rgba(11,23,36,0.06)}
+    .id{background:#ecfeff;border-left:4px solid #06b6d4;padding:12px;border-radius:6px;margin-top:12px;color:#064e52}
+    .small{font-size:13px;color:#475569;margin-top:8px}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Thanks — your application was received</h2>
+    <p class="small">Company: <strong>{{ company }}</strong></p>
+    <div class="id"><strong>Application ID:</strong> {{ application_id }}</div>
+    {% if email_sent %}
+    <p class="small">A confirmation email has been sent to <strong>{{ email }}</strong>.</p>
+    {% else %}
+    <p class="small">We couldn't send the confirmation email automatically. The application was still recorded.</p>
+    {% endif %}
+    <p class="small">If you need help, check the app logs or contact the system administrator.</p>
+  </div>
+</body>
+</html>
