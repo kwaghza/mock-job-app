@@ -39,6 +39,10 @@
     button:hover {
       background: #218838;
     }
+    #status {
+      text-align: center;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -49,7 +53,7 @@
     <input type="email" name="email" placeholder="Your email" required>
     <button type="submit">Submit</button>
   </form>
-  <p id="status" style="text-align:center;"></p>
+  <p id="status"></p>
 </div>
 
 <script>
@@ -58,14 +62,14 @@ document.getElementById("applicationForm").addEventListener("submit", function(e
 
     let email = e.target.email.value;
 
-    fetch("https://script.google.com/macros/s/AKfycbyx1K1Z9lXXJ1Z7l4orisbEXPbJlF-x0H4tPSW6zq2hRjrnHXg4d3nZRwJpN0SUg0I/exec", { // <-- STEP 4: PASTE YOUR URL HERE
+    fetch("https://script.google.com/macros/s/AKfycbyx1K1Z9lXXJ1Z7l4orisbEXPbJlF-x0H4tPSW6zq2hRjrnHXg4d3nZRwJpN0SUg0I/exec", {
       method: "POST",
       body: JSON.stringify({ email: email }),
       headers: { "Content-Type": "application/json" }
     })
     .then(res => res.text())
     .then(data => {
-      document.getElementById("status").innerText = "Application sent!";
+      document.getElementById("status").innerText = "Bulk application emails are being sent!";
     })
     .catch(err => {
       document.getElementById("status").innerText = "Error sending application.";
@@ -75,4 +79,5 @@ document.getElementById("applicationForm").addEventListener("submit", function(e
 
 </body>
 </html>
+
 
