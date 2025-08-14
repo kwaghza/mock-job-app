@@ -1,10 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Test Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Application Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .form-container {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+    h2 {
+      text-align: center;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      background: #28a745;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #218838;
+    }
+  </style>
 </head>
 <body>
-  <h1>Hello, your GitHub Pages is working!</h1>
-  <p>If you can see this, the site is live.</p>
+
+<div class="form-container">
+  <h2>Apply Here</h2>
+  <form id="applicationForm">
+    <input type="email" name="email" placeholder="Your email" required>
+    <button type="submit">Submit</button>
+  </form>
+  <p id="status" style="text-align:center;"></p>
+</div>
+
+<script>
+document.getElementById("applicationForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let email = e.target.email.value;
+
+    fetch("https://script.google.com/macros/s/AKfycbyx1K1Z9lXXJ1Z7l4orisbEXPbJlF-x0H4tPSW6zq2hRjrnHXg4d3nZRwJpN0SUg0I/exec", { // <-- STEP 4: PASTE YOUR URL HERE
+      method: "POST",
+      body: JSON.stringify({ email: email }),
+      headers: { "Content-Type": "application/json" }
+    })
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("status").innerText = "Application sent!";
+    })
+    .catch(err => {
+      document.getElementById("status").innerText = "Error sending application.";
+    });
+});
+</script>
+
 </body>
 </html>
+
